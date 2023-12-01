@@ -7,24 +7,9 @@ import {SafeAreaView,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import { Easing } from 'react-native';
+import Card from '../constants/cardLoading'
 
 export default function Loading(){
-
-    let rotateValueHolder = new Animated.Value(0)
-    const startImageRotateFunction = () => {
-        rotateValueHolder.setValue(0);
-        Animated.timing(rotateValueHolder, {
-            toValue: 1,
-            duration: 3000,
-            easing: Easing.linear,
-            useNativeDriver: false
-        }).start(() => startImageRotateFunction())
-    }
-
-    const rotateData = rotateValueHolder.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '360deg']
-    })
 
     return (
         <SafeAreaView style = {{}}>
@@ -34,9 +19,7 @@ export default function Loading(){
                     <Text style = {styles.imgText}>ТАРО</Text>
                 </div>
                 <div style = {styles.imgContainer}>
-                    <Animated.Image source = {require('../assets/images/card.svg') } style = {[styles.card, {
-                        transform: [{rotate: rotateData}]
-                    }]}></Animated.Image>
+                    <Card style = {styles.card}/>
                 </div>
             </View>
         </SafeAreaView>
